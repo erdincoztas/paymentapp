@@ -56,7 +56,7 @@
                         </style>
                     </head>
                     <body>
-
+                    Burası anasayfa
                     @yield('admin')
 
                     </body>
