@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\productCreate;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,4 +69,13 @@ class ProductController extends Controller
 
     }
 
+    public function users()
+    {
+        $users = User::all();
+        //$users = Product::findOrFail(10);
+        //dd($users->products);
+        $products = User::find(1)->products;
+        $user=Product::find(20)->user;
+        return response()->json($user);
+    }
 }

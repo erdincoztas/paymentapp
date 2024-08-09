@@ -21,6 +21,7 @@ Route::get('/dashboard', function () {
 
 
 
+Route::get('/users', [ProductController::class, 'users'])->name('users');
 Route::get('/', [ProductController::class, 'urunlistele'])->name('urunlistele');
 Route::get('/siparisdetay/{id}', [ProductController::class, 'siparisdetay'])->name('siparisdetay');
 
