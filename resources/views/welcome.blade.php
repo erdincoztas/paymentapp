@@ -59,6 +59,7 @@
     <table>
         <thead>
         <tr>
+            <th>SATICI</th>
             <th>Ürün Adı</th>
             <th>Kategori</th>
             <th>Fiyat</th>
@@ -68,6 +69,7 @@
         <tbody>
         @foreach($products as $product)
             <tr>
+                <td>{{ $product->user->name }}</td>
                 <td>{{ $product->product_name }}</td>
                 <td>{{ $product->product_price }}</td>
 

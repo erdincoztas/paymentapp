@@ -10,6 +10,7 @@
 <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
     <h2 class="text-2xl font-bold mb-4 text-center">Sipariş Detayları</h2>
     <div class="mb-4">
+        <p class="text-gray-700"><strong>Satıcı :</strong> {{ $product->user->name }}</p>
         <p class="text-gray-700"><strong>Ürün Adı:</strong> {{ $product->product_name }}</p>
         <p class="text-gray-700"><strong>Fiyat:</strong> {{ $product->product_price }} TL</p>
     </div>
