@@ -80,7 +80,7 @@ class ProductController extends Controller
         return response()->json($user);
     }
 
-    public function ordercreate(orderCreate $request){
+    public function ordercreate(Request $request){
         $customer_name = $request->input('customer_name');
         $customer_address = $request->input('customer_address');
         $product_quantity = $request->input('quantity');
