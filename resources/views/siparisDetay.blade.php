@@ -14,7 +14,7 @@
         <p class="text-gray-700"><strong>Ürün Adı:</strong> {{ $product->product_name }}</p>
         <p class="text-gray-700"><strong>Fiyat:</strong> {{ $product->product_price }} TL</p>
     </div>
-    <form action="" method="POST">
+    <form action="{{route('order.create')}}" method="POST">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <div class="mb-4">
@@ -25,6 +25,18 @@
             <label for="customer_address" class="block text-gray-700">Adres:</label>
             <textarea id="customer_address" name="customer_address" class="w-full px-3 py-2 border rounded-lg" required></textarea>
         </div>
+        <div class="mb-4">
+            <label for="quantity">Adet:</label>
+            <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <!-- İstediğiniz kadar seçenek ekleyebilirsiniz -->
+            </select>
+        </div>
+
         <div class="text-center">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Siparişi Tamamla</button>
         </div>

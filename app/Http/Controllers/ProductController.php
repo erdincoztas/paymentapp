@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\productCreate;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -78,4 +79,26 @@ class ProductController extends Controller
         $user=Product::find(20)->user;
         return response()->json($user);
     }
+
+    public function ordercreate(orderCreate $request){
+        $customer_name = $request->input('customer_name');
+        $customer_address = $request->input('customer_address');
+        $product_quantity = $request->input('quantity');
+        $product_id = $request->input('product_id');
+        $product = Product::findOrFail($product_id);
+
+        $total_price = $product_quantity*$product->product_price;
+        $insert = Order::create([
+            'customer_name' => $customer_name,
+            'customer_address'=> $customer_address,
+            'product_name'=> $product->product_name,
+            'product_pieces'=> $product->product_price,
+            'total_price'=> $total_price,
+            'seller_id' => $product->user->name
+        ]);
+        return view('siparisOlusturuldu');
+
+    }
+
+
 }
