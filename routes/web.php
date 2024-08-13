@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::post('/product/create', [ProductController::class , 'create'])->name('Product.create');
     Route::get('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
+
+    Route::get('/siparisler', [ProductController::class, 'siparisler'])->name('siparisler');
+
 });
 
 require __DIR__.'/auth.php';

@@ -56,7 +56,7 @@
                         </style>
                     </head>
                     <body>
-                    Burası dashboard
+
                     @yield('admin')
 
                     </body>

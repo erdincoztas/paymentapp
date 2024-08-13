@@ -91,14 +91,35 @@ class ProductController extends Controller
         $insert = Order::create([
             'customer_name' => $customer_name,
             'customer_address'=> $customer_address,
-            'product_name'=> $product->product_name,
+            'product_name'=> $product->id,
             'product_pieces'=> $product->product_price,
             'total_price'=> $total_price,
-            'seller_id' => $product->user->name
+            'seller_id' => $product->user->id,
+            //"status" => OrderStatus::where('status_name', 'pending')->first()->id;
         ]);
         return view('siparisOlusturuldu');
 
     }
 
+    public function siparisler(Request $request)
+    {
+        $orderarea = $request->input('ara');
+        $user_name = Auth::user()->id;
+        $orders = Order::where('seller_id', $user_name);
+        if (!empty($orderarea)){
+            $orders = $orders->where('customer_name','like','%'.$orderarea.'%');
+        }
+
+
+        $orders = $orders->paginate(5);
+
+
+        $orders->appends(
+            [
+                'ara' => $orderarea
+            ]
+        );
+        return view('layouts.orders',compact('orders','orderarea'));
+    }
 
 }
