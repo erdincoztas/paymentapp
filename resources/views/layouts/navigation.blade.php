@@ -21,8 +21,23 @@
                     <x-nav-link :href="route('urunler')" :active="request()->routeIs('urunler')">
                         {{ __('Ürünler') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('siparisler')" :active="request()->routeIs('siparisler')">
-                        {{ __('Siparişler') }}
+                    @can('siparisler')
+                        <x-nav-link :href="route('siparisler')" :active="request()->routeIs('siparisler')">
+                            {{ __('Siparişler') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('users')
+                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                        {{ __('Kullanıcılar') }}
+                    </x-nav-link>
+                    @endcan
+                    @can('notifications')
+                    <x-nav-link :href="route('notifications')" :active="request()->routeIs('notifications')">
+                        {{ __('Bildirimler') }}
+                    </x-nav-link>
+                    @endcan
+                    <x-nav-link :href="route('newNotification')" :active="request()->routeIs('newNotification')">
+                        {{ __('Gelen Bildirimler') }}
                     </x-nav-link>
                 </div>
             </div>

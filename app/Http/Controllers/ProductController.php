@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class ProductController extends Controller
 {
@@ -73,11 +74,22 @@ class ProductController extends Controller
     public function users()
     {
         $users = User::all();
+        $roles=Role::all();
+
+
         //$users = Product::findOrFail(10);
         //dd($users->products);
-        $products = User::find(1)->products;
-        $user=Product::find(20)->user;
-        return response()->json($user);
+        //$user=Product::find(20)->user;
+        // return response()->json($user);
+        return view('layouts.users',compact('users','roles'));
+    }
+
+    public function changeroles(Request $request ,$user_id){
+
+        $user = User::find($user_id);
+
+        $user->syncRoles($request->input('roles'));
+        return redirect('users');
     }
 
     public function ordercreate(Request $request){
@@ -103,6 +115,9 @@ class ProductController extends Controller
 
     public function siparisler(Request $request)
     {
+        if (!Auth::user()->can('edit articles')){
+            abort(403);
+        }
         $orderarea = $request->input('ara');
         $user_name = Auth::user()->id;
         $orders = Order::where('seller_id', $user_name);
